@@ -1,0 +1,87 @@
+<link rel="stylesheet" type="text/css" href="{{websiteRoot}}/css/index.css">
+{{> datatables}}
+
+<h1 class="title is-size-1">Armory</h1>
+
+<a href="{{websiteRoot}}/arena">Arena Ladder</a>&emsp;
+
+<br><br>
+
+{{#if (not (equalsLength realms 1))}}
+<div id="select-realm-container">
+	<span class="realm-label">Realm:</span>
+	<div class="select">
+		<select id="select-realm">
+			{{#each realms}}
+			<option>{{this}}</option>
+			{{/each}}
+		</select>
+	</div>
+</div>
+{{/if}}
+
+<br>
+
+<table id="results" class="stripe hover row-border">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Guild</th>
+			<th>Level</th>
+			<th>Class</th>
+			<th>Race</th>
+			<th>Online</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+
+<script type="application/javascript">
+	$(window).on("load", () => {
+		let dt;
+
+		$("#select-realm").on("change", () => {
+			dt.draw();
+		});
+
+		dt = $("#results").DataTable({
+			processing: true,
+			serverSide: true,
+			searchDelay: 800,
+			ajax: {
+				url: `{{websiteRoot}}/search`,
+				data: d => {
+					d.realm = $("#select-realm").val();
+				},
+			},
+			columnDefs: [
+				{
+					targets: 0,
+					render: (name, type, row, meta) => `<a href="{{websiteRoot}}/character/${meta.settings.json.realm}/${name}">${name}</a>`,
+				},
+				{
+					targets: 1,
+					render: (guild, type, row, meta) => guild === null ? "" : `<a href="{{websiteRoot}}/guild/${meta.settings.json.realm}/${guild}">${guild}</a>`,
+				},
+				{
+					searchable: false,
+					targets: 3,
+					render: data => `<img src="{{aowow}}/static/images/wow/icons/medium/class_${data}.jpg">`,
+				},
+				{
+					searchable: false,
+					targets: 4,
+					render: data => `<img src="{{aowow}}/static/images/wow/icons/medium/race_${data}.jpg">`,
+				},
+				{
+					searchable: false,
+					targets: 5,
+					render: online => online ? "🟢" : "🔴",
+				},
+			],
+			responsive: {
+				details: true,
+			},
+		});
+	});
+</script>

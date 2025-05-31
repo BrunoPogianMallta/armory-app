@@ -1,0 +1,29 @@
+<a href="{{websiteRoot}}/">Back to Armory</a>
+<br><br>
+
+<a href="{{websiteRoot}}/character/{{realm}}/{{name}}">Character</a>&emsp;
+<a href="{{websiteRoot}}/character/{{realm}}/{{name}}/talents">Talents</a>&emsp;
+<a href="{{websiteRoot}}/character/{{realm}}/{{name}}/achievements">Achievements</a>&emsp;
+<a href="{{websiteRoot}}/character/{{realm}}/{{name}}/pvp">PvP</a>&emsp;
+<br>
+<br>
+
+<div class="char-name title is-size-3">{{name}}</div>
+{{#if guild}}
+<a class="guild-name title is-size-4" href="{{websiteRoot}}/guild/{{realm}}/{{guild}}">&lt;{{guild}}&gt;</a>
+{{/if}}
+<div class="is-size-5">
+	Level <span class="char-level">{{level}}</span>
+	<span class="char-race">{{race}}</span>
+	<span class="char-class">{{class}}</span>
+</div>
+<div class="char-realm">{{realm}}</div>
+<div>
+	{{#if online}}
+	Online 🟢
+	{{else}}
+	Offline 🔴
+	{{/if}}
+</div>
+
+<br>

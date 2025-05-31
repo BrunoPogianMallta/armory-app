@@ -1,0 +1,36 @@
+{
+	"aowowUrl": "https://wowgaming.altervista.org/aowow",
+	"websiteUrl": "https://mywebsite.com",
+	"websiteName": "My Website",
+	"websiteRoot": "",
+	"iframeMode": {
+		"enabled": true,
+		"url": "https://wow-mallta-web-app.vercel.app"
+	},
+	"loadDbcs": true,
+	"hideGameMasters": true,
+	"transmogModule": false,
+	"useZamCdn": false,
+	"realms": [
+		{
+			"name": "AzerothCore",
+			"realmId": 1,
+			"authDatabase": "acore_auth",
+			"charactersDatabase": {
+				"host": "localhost",
+				"port": 3306,
+				"user": "acore",
+				"password": "acore",
+				"database": "acore_characters"
+			}
+		}
+	],
+	"worldDatabase": {
+		"host": "localhost",
+		"port": 3306,
+		"user": "acore",
+		"password": "acore",
+		"database": "acore_world"
+	},
+	"dbQueryTimeout": 10000
+}
