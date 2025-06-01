@@ -5,9 +5,7 @@ node_modules/
 build/
 
 # Downloaded data files
-data/*
-!data/*.csv
-!data/*.png
+
 
 # Configuration
 config.json
